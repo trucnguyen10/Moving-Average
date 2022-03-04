@@ -57,7 +57,8 @@ public class MovingAverage {
 	
 	public double avg()
 	{
-		if(windowsize <= size)
+		if(windowsize == 0) return ((double) sum) / size ;
+	    if(windowsize <= size)
 		{
 		long count = list.size();
 		if(count==0) return 0.0;
