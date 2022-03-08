@@ -39,10 +39,9 @@ public class MovingAverage {
 		}
 		sum+=N;
 		size++;
-		if(windowsize <= size)
-		{
-			list.add(N);
-		}
+		list.add(N);
+		if(list.size() >= size)
+		list.remove(0);
 }
 	public long total(long count) {
 		long sum = 0;
@@ -58,17 +57,17 @@ public class MovingAverage {
 	public double avg()
 	{
 		if(windowsize == 0) return ((double) sum) / size ;
-	    if(windowsize <= size)
+	    if(windowsize >= size) 
 		{
-		long count = list.size();
-		if(count==0) return 0.0;
+	    	 if(size == 0) return 0.0;
+			 return ((double) sum) / size;
+		}
+	    else
+		{
+	    long count = list.size();
+		if(list.size()==0) return 0.0;
 		else if(count > windowsize) return ((double) total(windowsize)) / windowsize;
 		else return ((double) total(count) / count);
-		}
-		else 
-		{
-			if(size == 0) return (double) 0;
-			else return ((double) sum) / size;
 		}
 	}
 }
